@@ -63,8 +63,12 @@ UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions);
+        Intent i = getIntent();
+
         scanprom = findViewById(R.id.scan);
         search = findViewById(R.id.search);
+        String uri = i.getStringExtra("category");
+        search.setText(uri);
         filter = findViewById(R.id.filter);
         Backend backend = new Backend();
         scanprom.setOnClickListener(new View.OnClickListener() {
