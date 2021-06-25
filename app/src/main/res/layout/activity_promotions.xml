@@ -85,8 +85,8 @@
 
             <ImageView
 
-                android:layout_width="151dp"
-                android:layout_height="match_parent"
+                android:layout_width="144dp"
+                android:layout_height="129dp"
                 android:src="@drawable/filter" />
 
             <TextView
@@ -101,13 +101,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:visibility="visible"
             android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="284dp"
-            android:layout_gravity="bottom"
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:visibility="gone"
-            android:id="@+id/recyclerviewfilter"
             android:layout_width="match_parent"
             android:layout_height="284dp"
             android:layout_gravity="bottom"

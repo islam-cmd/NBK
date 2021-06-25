@@ -51,29 +51,31 @@ FrameLayout filter;
     protected void onCreate(Bundle savedInstanceState) {
 
         //be.collectPromotions(FirebaseAuth.getInstance().getUid());
-filter = findViewById(R.id.filter);
+
 UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions);
+        filter = findViewById(R.id.filter);
+        Backend backend = new Backend();
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TAG", "onClick: WE GOT HERE");
+                backend.filterPromotions(UID,"Travel",  mRecyclerView);
+            }
+        });
         try {
             context = this;
             mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-            mRecyclerViewfilter = (RecyclerView) findViewById(R.id.recyclerviewfilter);
+
             mLayoutManager = new LinearLayoutManager(PromotionsActivity.this);
             mRecyclerView.setLayoutManager(mLayoutManager);
-            Backend backend = new Backend();
+
             backend.collectPromotions(UID,mRecyclerView);
 //            getItemList();
 
 //            backend.filterPromotions(UID,"Travel",  mRecyclerView);
 
-            filter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("TAG", "onClick: WE GOT HERE");
-                    backend.filterPromotions(UID,"Travel",  mRecyclerView);
-                }
-            });
             mAdapter.setOnItemClicklListener(new ItemAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
