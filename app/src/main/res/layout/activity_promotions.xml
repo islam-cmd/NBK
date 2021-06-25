@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/constrain"
     tools:context=".PromotionsActivity">
 
 
@@ -18,8 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/username"
+    <EditText
+        android:id="@+id/search"
         android:layout_width="216dp"
         android:layout_height="51dp"
         android:layout_marginTop="20dp"
@@ -29,11 +30,15 @@
         android:textColor="@color/bluenbk"
         android:textColorHint="@color/bluenbk"
         android:textSize="20dp"
+        android:hint="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" >
+
+
+    </EditText>
 
     <FrameLayout
         android:id="@+id/frameLayout2"
@@ -73,6 +78,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/filter"
             android:layout_width="154dp"
             android:layout_height="152dp"
             android:layout_gravity="right">
