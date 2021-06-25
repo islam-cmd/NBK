@@ -58,7 +58,7 @@ FrameLayout filter;
 
         //be.collectPromotions(FirebaseAuth.getInstance().getUid());
 
-UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
@@ -78,7 +78,7 @@ UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             public void onClick(View v) {
                 String temp = String.valueOf(search.getText());
                 Log.d("TAG", "onClick: WE GOT HERE");
-                backend.filterPromotions(UID,temp,  mRecyclerView);
+                backend.filterPromotions(UID, temp, mRecyclerView);
             }
         });
         try {
@@ -88,7 +88,7 @@ UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(mLayoutManager);
 
-            backend.collectPromotions(UID,mRecyclerView);
+            backend.collectPromotions(UID, mRecyclerView);
 //            getItemList();
 
 //            backend.filterPromotions(UID,"Travel",  mRecyclerView);
@@ -103,7 +103,6 @@ UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             Log.e("TAG", ex.getMessage());
         }
     }
-
 
 
 
