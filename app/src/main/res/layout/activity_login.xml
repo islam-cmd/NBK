@@ -37,12 +37,27 @@
 
 
     <EditText
-        android:id="@+id/username"
+        android:inputType="textEmailAddress"
+        android:id="@+id/email"
         android:layout_width="229dp"
         android:layout_height="58dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/border"
-        android:hint="Username"
+        android:hint="E-mail"
+        android:textColorHint="@color/bluenbk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+    <EditText
+        android:inputType="textPassword"
+        android:id="@+id/password"
+        android:layout_width="229dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/border"
+        android:hint="password"
         android:textColorHint="@color/bluenbk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,26 +67,23 @@
         android:id="@+id/btn"
         android:layout_width="229dp"
         android:layout_height="58dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="112dp"
         android:background="@drawable/roundedgedbtn"
         android:hint="Enter"
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.0">
+
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Enter"
-            android:textSize="30dp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="30dp" />
     </FrameLayout>
-
 
     <FrameLayout
 
