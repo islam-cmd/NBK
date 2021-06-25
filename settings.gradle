@@ -1,0 +1,2 @@
+rootProject.name = "NBK"
+include ':app'

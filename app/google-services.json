@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418721503470",
+    "project_id": "nbkhack-3a1fd",
+    "storage_bucket": "nbkhack-3a1fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418721503470:android:3482f031148db5ec163bff",
+        "android_client_info": {
+          "package_name": "com.example.nbk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418721503470-fnhhk93k75f8il3mnbo6bv9eci6f6fb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqM8mSWUTZ27xsG5hxHMXKQPXfNyKe-0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418721503470-fnhhk93k75f8il3mnbo6bv9eci6f6fb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
