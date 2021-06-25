@@ -225,6 +225,7 @@ android:textAlignment="center"
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/promo"
             android:layout_width="182dp"
             android:layout_height="150dp"
             android:layout_gravity="left|bottom">
