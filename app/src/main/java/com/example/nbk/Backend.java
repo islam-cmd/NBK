@@ -16,13 +16,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Backend {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    public ArrayList<Promotion> collectPromotions(String UID){
+    public ArrayList<Promotion> collectPromotions(String UID, RecyclerView mRecyclerView){
+
         ArrayList<Promotion> promos = new ArrayList<Promotion>();
         DatabaseReference myRef = database.getReference("Customers/"+UID+"/Promotions");
+//        DataSnapshot dataSnapshot = myRef.get().getResult();
+        if (mRecyclerView.getAdapter() != null){
+            mRecyclerView.setAdapter(null);
+        }
         myRef.orderByKey().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
@@ -30,7 +36,8 @@ public class Backend {
                         dataSnapshot.child("Percent").getValue().toString(),
                         dataSnapshot.child("Category").getValue().toString());
                 promos.add(p);
-                Log.d("Promo", p.toString());
+
+                mRecyclerView.setAdapter(new ItemAdapter(promos));
             }
 
             @Override
@@ -56,7 +63,9 @@ public class Backend {
         return promos;
     }
 
-    public ArrayList<Promotion> filterPromotions(String UID, String keyword) {
+
+    public ArrayList<Promotion> filterPromotions(String UID, String keyword,  RecyclerView mRecyclerView) {
+
         ArrayList<Promotion> promos = new ArrayList<Promotion>();
         DatabaseReference myRef = database.getReference("Customers/"+UID+"/Promotions");
         Log.d("Keyword", keyword);
@@ -64,62 +73,47 @@ public class Backend {
 
         Log.d("next", "----");
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String name = snapshot.getKey();
-                    String percent = snapshot.child("Percent").getValue(String.class);
-                    String category = snapshot.child("Category").getValue(String.class);
 
-                    if(name.toLowerCase().contains(keyword.toLowerCase()) || category.toLowerCase().contains(keyword.toLowerCase())){
-                        promos.add(new Promotion(name, percent, category));
-                    }
-                }
-            }
+
+        myRef.orderByKey().addChildEventListener(new ChildEventListener() {
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                Log.d("Child exists", "true");
+                String name = dataSnapshot.getKey();
+                String percent = dataSnapshot.child("Percent").getValue().toString();
+                String category = dataSnapshot.child("Category").getValue().toString();
+                Log.d("name", name);
+                Log.d("category", category);
+                Log.d("next", "----");
+
+
+                if(name.toLowerCase().contains(keyword.toLowerCase()) || category.toLowerCase().contains(keyword.toLowerCase())){
+                    promos.add(new Promotion(name, percent, category));
+                    mRecyclerView.setAdapter(new ItemAdapter(promos));
+                }
+                }
+
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
-//        myRef.orderByKey().addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-//                Log.d("Child exists", "true");
-//                String name = dataSnapshot.getKey();
-//                String percent = dataSnapshot.child("Percent").getValue().toString();
-//                String category = dataSnapshot.child("Category").getValue().toString();
-//                Log.d("name", name);
-//                Log.d("category", category);
-//                Log.d("next", "----");
-//
-//
-//                if(name.toLowerCase().contains(keyword.toLowerCase()) || category.toLowerCase().contains(keyword.toLowerCase())){
-//                    promos.add(new Promotion(name, percent, category));
-//                }
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
         return promos;
     }
 

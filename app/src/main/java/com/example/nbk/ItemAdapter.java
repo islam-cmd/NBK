@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
-    private List<DataModel> Items = new ArrayList<>();
+    private List<Promotion> Items = new ArrayList<>();
     OnItemClickListener mItemClickListener;
 
-    public ItemAdapter(List<DataModel> items) {
+    public ItemAdapter(ArrayList<Promotion> items) {
         this.Items = items;
     }
 
@@ -45,10 +45,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        DataModel model = Items.get(position);
+        Promotion model = Items.get(position);
 
-        holder.txtTitle.setText(model.getTitle());
-        holder.txtDate.setText(model.getDate());
+        holder.txtTitle.setText(model.getName());
+        holder.txtDate.setText(model.getPercent());
     }
 
     @Override
