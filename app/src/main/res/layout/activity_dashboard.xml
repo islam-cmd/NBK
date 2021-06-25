@@ -206,6 +206,7 @@ android:textAlignment="center"
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/pay"
             android:layout_width="169dp"
             android:layout_height="154dp"
             android:layout_gravity="right">

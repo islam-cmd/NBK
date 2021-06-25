@@ -2,10 +2,10 @@ package com.example.nbk;
 
 public class Customer {
      static String FirstName;
-     static String Balance;
+     static float Balance;
      static String CreditCardNumber,ExpDate, LastName ,Pin;
 
-    public Customer(String balance, String creditCardNumber, String expDate, String firstName, String lastName, String pin) {
+    public Customer(float balance, String creditCardNumber, String expDate, String firstName, String lastName, String pin) {
         Balance = balance;
         CreditCardNumber = creditCardNumber;
         ExpDate = expDate;
@@ -17,11 +17,11 @@ public class Customer {
 
 
 
-    public String getBalance() {
+    public float getBalance() {
         return Balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(float balance) {
         Balance = balance;
     }
 

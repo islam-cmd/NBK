@@ -23,9 +23,11 @@ import com.example.nbk.Customer;
 public class DashboardActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseUser fuser;
-TextView username,user,accnum, pass,  expdate;
-RelativeLayout front , back;
-FrameLayout frameLayout;
+    TextView username,user,accnum, pass,  expdate;
+    RelativeLayout front , back;
+    FrameLayout promoLayout;
+
+    FrameLayout payLayout;
 
 
     @Override
@@ -34,7 +36,8 @@ FrameLayout frameLayout;
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        frameLayout = findViewById(R.id.promo);
+        promoLayout = findViewById(R.id.promo);
+        payLayout = findViewById(R.id.pay);
         username =findViewById(R.id.username);
         user =findViewById(R.id.user);
         accnum =findViewById(R.id.accnum);
@@ -61,7 +64,7 @@ FrameLayout frameLayout;
                 pass.setText(Customer.getPin());
                 username.setText(Customer.getFirstName());
 
-                user.setText((Customer.getFirstName() + " "+Customer.getLastName()));
+                user.setText((Customer.getFirstName() + " " + Customer.getLastName()));
                 accnum.setText(Customer.getCreditCardNumber());
                 expdate.setText(Customer.getExpDate());
 
@@ -88,10 +91,16 @@ FrameLayout frameLayout;
                 front.setVisibility(View.VISIBLE);
             }
         });
-        frameLayout.setOnClickListener(new View.OnClickListener() {
+        promoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, PromotionsActivity.class));
+            }
+        });
+        payLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, Pay.class));
             }
         });
 
