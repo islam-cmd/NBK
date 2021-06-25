@@ -1,0 +1,23 @@
+[
+  {
+    "FirstName": "John",
+    "LastName:": "Doe",
+    "CreditCardNumber": "1234-5678-9101-1121",
+    "PIN": "123",
+    "ExpDate": "06/22" //format is: MM/YY (M=month, Y=year)
+  },
+  {
+    "FirstName": "Mickey",
+    "LastName:": "Mouse",
+    "CreditCardNumber": "2221-2323-8989-0101",
+    "PIN": "586",
+    "ExpDate": "11/27"
+  },
+  {
+    "FirstName": "Donald",
+    "LastName:": "Duck",
+    "CreditCardNumber": "0921-1267-4539-9230",
+    "PIN": "234",
+    "ExpDate": "02/24"
+  }
+]
