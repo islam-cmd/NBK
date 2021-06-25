@@ -9,18 +9,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class Backend {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    public void collectPromotions(String UID){
+    public ArrayList<Promotion> collectPromotions(String UID){
+        ArrayList<Promotion> promos = new ArrayList<Promotion>();
         DatabaseReference myRef = database.getReference("Customers/"+UID+"/Promotions");
         myRef.orderByKey().addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                System.out.println(dataSnapshot.getKey());
+                Promotion p = new Promotion(dataSnapshot.getKey(),
+                        dataSnapshot.child("Percent").getValue().toString(),
+                        dataSnapshot.child("Category").getValue().toString());
+                promos.add(p);
+                Log.d("Promo", p.toString());
             }
 
             @Override
@@ -43,39 +53,74 @@ public class Backend {
 
             }
         });
+        return promos;
     }
 
-    public void filterPromotions(String UID, String keyword){
+    public ArrayList<Promotion> filterPromotions(String UID, String keyword) {
+        ArrayList<Promotion> promos = new ArrayList<Promotion>();
         DatabaseReference myRef = database.getReference("Customers/"+UID+"/Promotions");
-        myRef.orderByKey().addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                System.out.println(dataSnapshot.getKey());
-                if(dataSnapshot.getKey().toLowerCase().contains(keyword.toLowerCase())){
+        Log.d("Keyword", keyword);
+        Log.d("UID", UID);
 
+        Log.d("next", "----");
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String name = snapshot.getKey();
+                    String percent = snapshot.child("Percent").getValue(String.class);
+                    String category = snapshot.child("Category").getValue(String.class);
+
+                    if(name.toLowerCase().contains(keyword.toLowerCase()) || category.toLowerCase().contains(keyword.toLowerCase())){
+                        promos.add(new Promotion(name, percent, category));
+                    }
                 }
             }
-
             @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+//        myRef.orderByKey().addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+//                Log.d("Child exists", "true");
+//                String name = dataSnapshot.getKey();
+//                String percent = dataSnapshot.child("Percent").getValue().toString();
+//                String category = dataSnapshot.child("Category").getValue().toString();
+//                Log.d("name", name);
+//                Log.d("category", category);
+//                Log.d("next", "----");
+//
+//
+//                if(name.toLowerCase().contains(keyword.toLowerCase()) || category.toLowerCase().contains(keyword.toLowerCase())){
+//                    promos.add(new Promotion(name, percent, category));
+//                }
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+        return promos;
     }
 
     public void deduct(String UID, float amount){

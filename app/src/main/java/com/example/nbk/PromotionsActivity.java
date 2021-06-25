@@ -9,8 +9,12 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PromotionsActivity extends AppCompatActivity {
 
@@ -18,8 +22,15 @@ public class PromotionsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ItemAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Backend be = new Backend();
+//    ArrayList<Promotion> promos = new ArrayList<Promotion>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //be.collectPromotions(FirebaseAuth.getInstance().getUid());
+        be.filterPromotions(FirebaseAuth.getInstance().getUid(), "travel");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions);
 
