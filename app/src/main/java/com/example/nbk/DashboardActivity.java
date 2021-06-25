@@ -52,8 +52,7 @@ FrameLayout frameLayout;
                 customer.Pin = dataSnapshot.child("Pin").getValue(String.class);
                 customer.CreditCardNumber = dataSnapshot.child("CreditCardNumber").getValue(String.class);
                 customer.ExpDate = dataSnapshot.child("ExpDate").getValue(String.class);
-                Log.d(Customer.getFirstName() +"", "to Strig");
-//                Log.d(customers.getPin(), "to Strig");
+                Log.d(Customer.getFirstName() +"", "to String");
                 pass.setText(Customer.getPin());
                 username.setText(Customer.getFirstName());
 
@@ -84,12 +83,12 @@ FrameLayout frameLayout;
                 front.setVisibility(View.VISIBLE);
             }
         });
-frameLayout.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        startActivity(new Intent(DashboardActivity.this, PromotionsActivity.class));
-    }
-});
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, PromotionsActivity.class));
+            }
+        });
 
     }
 }

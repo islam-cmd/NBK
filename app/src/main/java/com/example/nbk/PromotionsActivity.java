@@ -17,8 +17,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PromotionsActivity extends AppCompatActivity {
 FrameLayout filter;
@@ -26,8 +30,15 @@ FrameLayout filter;
     private RecyclerView mRecyclerView;
     private ItemAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Backend be = new Backend();
+//    ArrayList<Promotion> promos = new ArrayList<Promotion>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //be.collectPromotions(FirebaseAuth.getInstance().getUid());
+        be.filterPromotions(FirebaseAuth.getInstance().getUid(), "travel");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions);
         filter = findViewById(R.id.filter);
