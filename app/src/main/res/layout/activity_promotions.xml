@@ -80,13 +80,13 @@
             <ImageView
                 android:layout_width="151dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/pay" />
+                android:src="@drawable/filter" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
-                android:text="Pay"
+                android:text="Filter"
                 android:textColor="@color/bluenbk"
                 android:textSize="20dp" />
         </FrameLayout>

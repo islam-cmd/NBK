@@ -2,9 +2,11 @@ package com.example.nbk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,11 +23,13 @@ public class DashboardActivity extends AppCompatActivity {
     FirebaseUser fuser;
 TextView username,user,accnum, pass,  expdate;
 RelativeLayout front , back;
+FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        frameLayout = findViewById(R.id.promo);
         username =findViewById(R.id.username);
         user =findViewById(R.id.user);
         accnum =findViewById(R.id.accnum);
@@ -80,6 +84,12 @@ RelativeLayout front , back;
                 front.setVisibility(View.VISIBLE);
             }
         });
+frameLayout.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(DashboardActivity.this, PromotionsActivity.class));
+    }
+});
 
     }
 }
