@@ -13,11 +13,6 @@ public class Backend {
 
     public void deduct(String UID, float amount){
         DatabaseReference myRef = database.getReference("Customers/"+UID+"/Balance");
-//        DataSnapshot dataSnapshot = myRef.get().getResult();
-//        float value = dataSnapshot.getValue(float.class);
-//        Log.d("TAG", "Value is: " + value);
-//        myRef.setValue(value-amount);
-//        Log.d("TAG", "Value is: " + (value-amount));
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

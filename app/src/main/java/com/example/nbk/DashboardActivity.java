@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.example.nbk.Customers;
+import com.example.nbk.Customer;
 public class DashboardActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseUser fuser;
@@ -35,27 +35,27 @@ RelativeLayout front , back;
         back =findViewById(R.id.back);
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference myRef = database.getReference("Customers/"+fuser.getUid());
-Log.d("WTH", FirebaseAuth.getInstance().getUid());
+        Log.d("WTH", FirebaseAuth.getInstance().getUid());
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 //                float value = dataSnapshot.getValue(float.class);
-                 Customers customers = dataSnapshot.getValue(Customers.class);
-                 customers.FirstName = dataSnapshot.child("FirstName").getValue(String.class);
-                customers.LastName = dataSnapshot.child("LastName").getValue(String.class);
-                customers.Pin = dataSnapshot.child("Pin").getValue(String.class);
-                customers.CreditCardNumber = dataSnapshot.child("CreditCardNumber").getValue(String.class);
-                customers.ExpDate = dataSnapshot.child("ExpDate").getValue(String.class);
-                 Log.d(Customers.getFirstName() +"", "to Strig");
+                Customer customer = dataSnapshot.getValue(Customer.class);
+                customer.FirstName = dataSnapshot.child("FirstName").getValue(String.class);
+                customer.LastName = dataSnapshot.child("LastName").getValue(String.class);
+                customer.Pin = dataSnapshot.child("Pin").getValue(String.class);
+                customer.CreditCardNumber = dataSnapshot.child("CreditCardNumber").getValue(String.class);
+                customer.ExpDate = dataSnapshot.child("ExpDate").getValue(String.class);
+                Log.d(Customer.getFirstName() +"", "to Strig");
 //                Log.d(customers.getPin(), "to Strig");
-                pass.setText(Customers.getPin());
-                username.setText(Customers.getFirstName());
+                pass.setText(Customer.getPin());
+                username.setText(Customer.getFirstName());
 
-                user.setText((Customers.getFirstName() + " "+Customers.getLastName()));
-                accnum.setText(Customers.getCreditCardNumber());
-                expdate.setText(Customers.getExpDate());
+                user.setText((Customer.getFirstName() + " "+Customer.getLastName()));
+                accnum.setText(Customer.getCreditCardNumber());
+                expdate.setText(Customer.getExpDate());
 
             }
 

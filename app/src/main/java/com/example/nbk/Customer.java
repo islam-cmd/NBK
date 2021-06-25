@@ -1,11 +1,11 @@
 package com.example.nbk;
 
-public class Customers {
+public class Customer {
      static String FirstName;
      static String Balance;
      static String CreditCardNumber,ExpDate, LastName ,Pin;
 
-    public Customers(String balance, String creditCardNumber, String expDate, String firstName, String lastName, String pin) {
+    public Customer(String balance, String creditCardNumber, String expDate, String firstName, String lastName, String pin) {
         Balance = balance;
         CreditCardNumber = creditCardNumber;
         ExpDate = expDate;
@@ -13,7 +13,7 @@ public class Customers {
         LastName = lastName;
         Pin = pin;
     }
-    public Customers(){}
+    public Customer(){}
 
 
 
