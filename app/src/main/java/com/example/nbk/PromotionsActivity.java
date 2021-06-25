@@ -15,6 +15,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,8 +40,9 @@ public class PromotionsActivity extends AppCompatActivity {
 FrameLayout filter;
     Context context;
     String UID;
+    EditText search ;
     private RecyclerView mRecyclerView;
-    private RecyclerView mRecyclerViewfilter;
+
     private ItemAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Backend be = new Backend();
@@ -53,22 +57,26 @@ FrameLayout filter;
         //be.collectPromotions(FirebaseAuth.getInstance().getUid());
 
 UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions);
+        search = findViewById(R.id.search);
         filter = findViewById(R.id.filter);
         Backend backend = new Backend();
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String temp = String.valueOf(search.getText());
                 Log.d("TAG", "onClick: WE GOT HERE");
-                backend.filterPromotions(UID,"Travel",  mRecyclerView);
+                backend.filterPromotions(UID,temp,  mRecyclerView);
             }
         });
         try {
             context = this;
             mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
-            mLayoutManager = new LinearLayoutManager(PromotionsActivity.this);
+            mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(mLayoutManager);
 
             backend.collectPromotions(UID,mRecyclerView);
