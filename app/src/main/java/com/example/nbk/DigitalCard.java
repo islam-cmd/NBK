@@ -23,7 +23,7 @@ public class DigitalCard extends AppCompatActivity {
         setContentView(R.layout.activity_digital_card);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String UID = "PNdrMQY025XZyNX3SMkI1xuZuHm2";
-        be.deduct(UID, 30);
+        //be.deduct(UID, 30);
 //        DatabaseReference myRef = database.getReference("Customers/"+UID+"/Balance");
 
 

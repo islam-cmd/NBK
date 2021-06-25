@@ -14,9 +14,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-//    FirebaseDatabase database;
-//    ImageView imageView;
-private static int SPLASH_SCREEN_TIME_OUT=2000;
+    //    FirebaseDatabase database;
+    //    ImageView imageView;
+    private static int SPLASH_SCREEN_TIME_OUT=2000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
