@@ -10,23 +10,19 @@
     <androidx.camera.view.PreviewView
         android:id="@+id/qr_activity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp" />
 
-        <Button
-            android:id="@+id/activity_main_qrCodeFoundButton"
-            android:layout_width="205dp"
-            android:layout_height="102dp"
-            android:layout_marginStart="200dp"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="200dp"
-            android:layout_marginRight="200dp"
-            android:layout_marginBottom="200dp"
-            android:text="QR Code Found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.camera.view.PreviewView>
+    <Button
+        android:id="@+id/activity_main_qrCodeFoundButton"
+        android:layout_width="205dp"
+        android:layout_height="102dp"
+        android:text="QR Code Found"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
