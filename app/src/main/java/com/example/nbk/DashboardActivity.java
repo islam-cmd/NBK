@@ -2,9 +2,13 @@ package com.example.nbk;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,10 +25,12 @@ public class DashboardActivity extends AppCompatActivity {
     FirebaseUser fuser;
 TextView username,user,accnum, pass,  expdate;
 RelativeLayout front , back;
-
+FrameLayout promo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_dashboard);
         username =findViewById(R.id.username);
         user =findViewById(R.id.user);
@@ -33,6 +39,7 @@ RelativeLayout front , back;
         expdate =findViewById(R.id.expdate);
         front =findViewById(R.id.front);
         back =findViewById(R.id.back);
+        promo = findViewById(R.id.promo);
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference myRef = database.getReference("Customers/"+fuser.getUid());
         Log.d("WTH", FirebaseAuth.getInstance().getUid());
@@ -80,6 +87,13 @@ RelativeLayout front , back;
                 front.setVisibility(View.VISIBLE);
             }
         });
+promo.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(DashboardActivity.this, PromotionsActivity.class);
 
+        startActivity(intent);
+    }
+});
     }
 }
