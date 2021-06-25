@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -131,6 +132,9 @@ btn = findViewById(R.id.btn);
             public void onQRCodeFound(String _qrCode) {
                 qrCode = _qrCode;
                 result.setText(_qrCode);
+                Intent intent = new Intent(QRScanner.this, PromotionsActivity.class);
+                intent.putExtra("category", qrCode);
+                startActivity(intent);
                 btn.setVisibility(View.VISIBLE);
             }
 
