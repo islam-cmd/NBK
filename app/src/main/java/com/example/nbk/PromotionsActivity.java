@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
@@ -48,6 +49,7 @@ FrameLayout filter;
     private Backend be = new Backend();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     String keyword = "Travel";
+    FrameLayout scanprom;
 
 //    ArrayList<Promotion> promos = new ArrayList<Promotion>();
 
@@ -61,9 +63,16 @@ UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions);
+        scanprom = findViewById(R.id.scan);
         search = findViewById(R.id.search);
         filter = findViewById(R.id.filter);
         Backend backend = new Backend();
+        scanprom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PromotionsActivity.this, QRScanner.class));
+            }
+        });
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,16 +146,6 @@ UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 });
 return null;
             }}
-//           eached the funvtion");
-//                ArrayList<Promotion> models = new ArrayList<>();
-//                models.add(new Promotion("Item Title 1", "20","01 Jan, 2018"));
-//                models.add(new Promotion("Item Title 2", "20", "02 Jan, 2018"));
-//                models.add(new Promotion("Item Title 3", "20","03 Jan, 2018"));
-//                models.add(new Promotion("Item Title 4", "20","04 Jan, 2018"));
-//                models.add(new Promotion("Item Title 5", "20","05 Jan, 2018"));
-//                models.add(new Promotion("Item Title 6", "20","06 Jan, 2018"));
-//
-//
-//                return models;
+
 
 

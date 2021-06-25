@@ -54,6 +54,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <FrameLayout
+            android:id="@+id/scan"
             android:layout_width="154dp"
             android:layout_height="152dp"
             android:layout_gravity="left">
