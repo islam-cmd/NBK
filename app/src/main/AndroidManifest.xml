@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NBK">
-        <activity android:name=".PromotionsActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-
-        </activity>
+        <activity android:name=".QRScanner"></activity>
+        <activity
+            android:name=".PromotionsActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".DigitalCard" />
