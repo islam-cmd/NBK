@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,41 +9,145 @@
 
     <!--We are using this image
         view to display our QR code-->
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="82dp"
+        android:layout_height="62dp"
+        android:src="@drawable/profilepic"
+        app:layout_constraintBottom_toTopOf="@+id/idIVQrcode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Edit text to enter text
+        for creating a QR code-->
+
+    <!--Button for creating a QR code-->
+
+
     <ImageView
         android:id="@+id/idIVQrcode"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:contentDescription="@string/qr_code" />
+        android:layout_marginBottom="40dp"
+        android:contentDescription="@string/qr_code"
+        android:src="@drawable/qr"
+        app:layout_constraintBottom_toTopOf="@+id/amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!--Edit text to enter text
-        for creating a QR code-->
     <EditText
         android:id="@+id/amount"
-        android:digits="1234567890"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idIVQrcode"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="323dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/border"
         android:hint="How much do you want to pay?"
-        android:inputType="text" />
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/bluenbk"
+        app:layout_constraintBottom_toTopOf="@+id/btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!--Button for creating a QR code-->
-    <Button
-        android:id="@+id/idBtnGenerateQR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/amount"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Confirm"
+    <FrameLayout
+        android:id="@+id/btn"
+        android:layout_width="229dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="148dp"
+        android:background="@drawable/roundedgedbtn"
+        android:hint="Enter"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        android:text="Confirm"
-        android:visibility="visible"
-        tools:visibility="visible" />
+        app:layout_constraintStart_toStartOf="parent">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Enter"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+    </FrameLayout>
+
+    <FrameLayout
+
+        android:id="@+id/frameLayout4"
+        android:layout_width="408dp"
+        android:layout_height="83dp"
+        android:background="@color/bluenbk"
+        android:backgroundTint="@color/bluenbk"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="410dp"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/bluenbk">
+
+
+            <ImageView
+                android:id="@+id/location"
+                android:layout_width="82dp"
+                android:layout_height="74dp"
+                android:layout_gravity="left"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="1dp"
+                android:layout_toStartOf="@+id/home"
+                android:layout_toLeftOf="@+id/home"
+                android:src="@drawable/ic_baseline_location_on_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/home"
+                android:layout_width="96dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="1dp"
+                android:layout_toStartOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/imageView6"
+
+                android:src="@drawable/ic_baseline_home_24" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="99dp"
+                android:layout_height="74dp"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="-1dp"
+                android:layout_marginRight="-1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_toStartOf="@+id/imageView7"
+                android:layout_toLeftOf="@+id/imageView7"
+                android:src="@drawable/ic_baseline_notifications_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="79dp"
+                android:layout_height="73dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="29dp"
+                android:layout_marginRight="29dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_baseline_chat_24" />
+        </RelativeLayout>
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

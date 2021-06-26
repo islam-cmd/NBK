@@ -1,12 +1,16 @@
 package com.example.nbk;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,17 +31,27 @@ public class Recieve extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     Backend backend = new Backend();
     Customer customer;
-    Button confirm;
+    FrameLayout confirm;
     EditText amount;
+    ImageView home;
 
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recieve);
-
+        home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Recieve.this, DashboardActivity.class));
+            }
+        });
 //        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //FIX LATER
         String UID = "sflF8HgFLkQDXGe4PaZBmcYKi663";
@@ -64,7 +78,7 @@ public class Recieve extends AppCompatActivity {
         });
 
         amount = findViewById(R.id.amount);
-        confirm = findViewById(R.id.idBtnGenerateQR);
+        confirm = findViewById(R.id.btn);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

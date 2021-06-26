@@ -3,15 +3,19 @@ package com.example.nbk;
 public class Customer {
      static String FirstName;
      static float Balance;
+
+
+    static String CCLocation;
      static String CreditCardNumber,ExpDate, LastName ,Pin;
 
-    public Customer(float balance, String creditCardNumber, String expDate, String firstName, String lastName, String pin) {
+    public Customer(float balance, String creditCardNumber, String expDate, String firstName, String lastName, String pin, String cclocation ) {
         Balance = balance;
         CreditCardNumber = creditCardNumber;
         ExpDate = expDate;
         FirstName = firstName;
         LastName = lastName;
         Pin = pin;
+        CCLocation = cclocation;
     }
     public Customer(){}
 
@@ -65,4 +69,11 @@ public class Customer {
         Pin = pin;
     }
 
+    public static String getCCLocation() {
+        return CCLocation;
+    }
+
+    public void setCCLocation(String CCLocation) {
+        this.CCLocation = CCLocation;
+    }
 }

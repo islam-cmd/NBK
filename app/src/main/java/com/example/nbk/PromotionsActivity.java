@@ -43,6 +43,7 @@ FrameLayout filter;
     String UID;
     EditText search ;
     private RecyclerView mRecyclerView;
+    ImageView home;
 
     private ItemAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -63,7 +64,13 @@ FrameLayout filter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions);
         Intent i = getIntent();
-
+        home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PromotionsActivity.this, DashboardActivity.class));
+            }
+        });
         scanprom = findViewById(R.id.scan);
         search = findViewById(R.id.search);
         String uri = i.getStringExtra("category");

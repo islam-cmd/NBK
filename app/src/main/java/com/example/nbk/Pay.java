@@ -3,11 +3,14 @@ package com.example.nbk;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -30,19 +33,27 @@ public class Pay extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     Backend backend = new Backend();
     Customer customer;
-    Button confirm;
+    FrameLayout confirm;
     EditText amount;
 
-
+    ImageView home;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
-
-//        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String UID = "sflF8HgFLkQDXGe4PaZBmcYKi663";
+        home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Pay.this, DashboardActivity.class));
+            }
+        });
+        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        String UID = "sflF8HgFLkQDXGe4PaZBmcYKi663";
         DatabaseReference myRef = database.getReference("Customers/"+UID);
         Log.d("WTH", FirebaseAuth.getInstance().getUid());
         myRef.addValueEventListener(new ValueEventListener() {
@@ -79,7 +90,7 @@ public class Pay extends AppCompatActivity {
 //            }
 //        }
         amount = findViewById(R.id.amount);
-        confirm = findViewById(R.id.idBtnGenerateQR);
+        confirm = findViewById(R.id.btn);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

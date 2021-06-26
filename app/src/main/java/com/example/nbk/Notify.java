@@ -9,7 +9,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,19 +26,29 @@ import net.glxn.qrgen.android.QRCode;
 public class Notify extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     TextView notification;
-    Button accept;
-    Button reject;
+    FrameLayout accept;
+    FrameLayout reject;
     Backend be = new Backend();
+    ImageView home ;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify);
         notification = findViewById(R.id.notification);
         String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference myRef = database.getReference("Customers/"+UID);
-
+home = findViewById(R.id.home);
+home.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(Notify.this, DashboardActivity.class));
+    }
+});
         Intent i = getIntent();
         String[] qrCode = i.getStringArrayExtra("qrArray");
 
@@ -54,7 +67,7 @@ public class Notify extends AppCompatActivity {
             startActivity(new Intent(Notify.this, DashboardActivity.class));
         }
 
-        String typeFormat = (qrCode[1] == "pay") ? "pay you " : "recieve from you";
+        String typeFormat = (qrCode[1].contains("pay") ? "pay you " : "recieve from you");
 
         notification.setText(qrCode[4] + " wants to " + typeFormat + ": " + qrCode[2] + " KD. Do you Accept?");
 

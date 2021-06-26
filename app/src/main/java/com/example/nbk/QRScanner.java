@@ -1,6 +1,8 @@
 package com.example.nbk;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
@@ -13,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -28,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,6 +46,7 @@ public class QRScanner extends AppCompatActivity {
     private ImageView btn;
     private String qrCode = "";
     TextView result;
+    ImageView home;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -51,6 +56,13 @@ public class QRScanner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscanner);
         result = findViewById(R.id.Result);
+        home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(QRScanner.this, DashboardActivity.class));
+            }
+        });
 
         previewView = findViewById(R.id.qr_activity);
         btn = findViewById(R.id.btn);
@@ -130,28 +142,76 @@ public class QRScanner extends AppCompatActivity {
         imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), new QRCodeImageAnalyzer(new QRCodeFoundListener() {
             @Override
             public void onQRCodeFound(String _qrCode) {
-                qrCode = _qrCode;
-                result.setText(_qrCode);
-                String[] splitString = qrCode.split("-");
-                if(splitString[0].equals("nbk") && (splitString[1].equals("pay") || splitString[1].equals("recieve"))){
-                    Intent intent = new Intent(QRScanner.this, Notify.class);
-                    intent.putExtra("qrArray", splitString);
-                    startActivity(intent);
-                    btn.setVisibility(View.VISIBLE);
-                } else {
-                    Intent intent = new Intent(QRScanner.this, PromotionsActivity.class);
-                    intent.putExtra("category", qrCode);
-                    startActivity(intent);
-                    btn.setVisibility(View.VISIBLE);
-                }
-            }
+                imageAnalysis.clearAnalyzer();
+                function(_qrCode);
+return;
 
-            @Override
-            public void qrCodeNotFound() {
-                btn.setVisibility(View.INVISIBLE);
-            }
-        }));
-
-        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this, cameraSelector, imageAnalysis, preview);
     }
+
+    @Override
+    public void qrCodeNotFound() {
+        btn.setVisibility(View.INVISIBLE);
+    }
+}));
+
+        Camera camera=cameraProvider.bindToLifecycle((LifecycleOwner)this,cameraSelector,imageAnalysis,preview);
+        }
+public void function (String _qrCode){
+    qrCode = _qrCode;
+    result.setText(_qrCode);
+    String[] splitString = qrCode.split("-");
+    if (splitString[0].equals("nbk") && (splitString[1].equals("pay") || splitString[1].equals("recieve"))) {
+
+//        AlertDialog alertDialog = new AlertDialog.Builder(QRScanner.this).create();
+//        alertDialog.setTitle("Notification");
+//        String typeFormat = (splitString[1] == "pay") ? "pay you " : "recieve from you";
+//        alertDialog.setMessage(typeFormat);
+//        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Accept", new DialogInterface.OnClickListener() {
+//            Backend be = new Backend();
+//
+//            @RequiresApi(api = Build.VERSION_CODES.O)
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Log.d("pay/recieve", splitString[1]);
+//                if (splitString[1].equals("pay")) {
+//                    /**/
+//                    be.UserOnePaysUser2(splitString[3], FirebaseAuth.getInstance().getCurrentUser().getUid(), Float.parseFloat(splitString[2]));
+//                } else if (splitString[1].equals("recieve")) {
+//                    be.UserOneRecievesFromUser2(splitString[3], FirebaseAuth.getInstance().getCurrentUser().getUid(), Float.parseFloat(splitString[2]));
+//                }
+//                be.UserOneRecievesFromUser2(splitString[3], FirebaseAuth.getInstance().getCurrentUser().getUid(), Float.parseFloat(splitString[2]));
+//                startActivity(new Intent(QRScanner.this, DashboardActivity.class));
+//            }
+//        });
+//        finish();
+//                }
+//
+//            });
+//        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"Reject",new DialogInterface.OnClickListener()
+//
+//        {
+//            @Override
+//            public void onClick (DialogInterface dialog,int which){
+//                dialog.dismiss();
+//                startActivity(new Intent(QRScanner.this, DashboardActivity.class));
+////
+//            }
+////
+//        });
+//        alertDialog.show();
+//////
+//            //
+            Intent intent = new Intent(QRScanner.this, Notify.class);
+                    intent.putExtra("qrArray",splitString);
+
+            startActivity(intent);
+                    btn.setVisibility(View.VISIBLE);
+    } else{
+        Intent intent = new Intent(QRScanner.this, PromotionsActivity.class);
+        intent.putExtra("category", qrCode);
+        startActivity(intent);
+        btn.setVisibility(View.VISIBLE);
+    }
+}
+
 }

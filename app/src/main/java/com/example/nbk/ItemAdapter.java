@@ -24,7 +24,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         public ItemViewHolder(View view) {
             super(view);
             txtTitle = (TextView) view.findViewById(R.id.txt_title);
-            txtDate = (TextView) view.findViewById(R.id.txt_date);
+//            txtDate = (TextView) view.findViewById(R.id.txt_date);
 
             view.setOnClickListener(this);
         }
@@ -47,8 +47,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         Promotion model = Items.get(position);
 
-        holder.txtTitle.setText(model.getName());
-        holder.txtDate.setText(model.getPercent());
+        holder.txtTitle.setText(model.toString());
+//        holder.txtDate.setText(model.getPercent());
     }
 
     @Override

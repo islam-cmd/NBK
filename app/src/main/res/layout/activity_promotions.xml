@@ -48,21 +48,21 @@
         android:layout_marginRight="53dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounddash"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent">
 
         <FrameLayout
             android:id="@+id/scan"
-            android:layout_width="154dp"
-            android:layout_height="152dp"
+            android:layout_width="110dp"
+            android:layout_height="94dp"
             android:layout_gravity="left">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="167dp"
-                android:layout_gravity="bottom"
+                android:layout_height="79dp"
+                android:layout_gravity="top"
                 android:foregroundGravity="top"
                 android:paddingTop="0dp"
                 android:src="@drawable/ic_baseline_qr_code_24" />
@@ -78,14 +78,14 @@
 
         <FrameLayout
             android:id="@+id/filter"
-            android:layout_width="154dp"
-            android:layout_height="152dp"
+            android:layout_width="106dp"
+            android:layout_height="94dp"
             android:layout_gravity="right">
 
             <ImageView
 
-                android:layout_width="144dp"
-                android:layout_height="129dp"
+                android:layout_width="107dp"
+                android:layout_height="68dp"
                 android:src="@drawable/filter" />
 
             <TextView
@@ -98,18 +98,17 @@
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="visible"
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="284dp"
+            android:layout_height="323dp"
             android:layout_gravity="bottom"
-            />
+            android:visibility="visible" />
 
     </FrameLayout>
 
     <FrameLayout
 
-        android:id="@+id/frameLayout3"
+        android:id="@+id/frameLayout4"
         android:layout_width="408dp"
         android:layout_height="83dp"
         android:background="@color/bluenbk"
@@ -120,21 +119,21 @@
 
         <RelativeLayout
             android:id="@+id/rl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="410dp"
+            android:layout_height="48dp"
             android:backgroundTint="@color/bluenbk">
 
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/location"
                 android:layout_width="82dp"
                 android:layout_height="74dp"
                 android:layout_gravity="left"
                 android:layout_marginEnd="2dp"
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="1dp"
-                android:layout_toStartOf="@+id/imageView4"
-                android:layout_toLeftOf="@+id/imageView4"
+                android:layout_toStartOf="@+id/home"
+                android:layout_toLeftOf="@+id/home"
                 android:src="@drawable/ic_baseline_location_on_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView6"
@@ -142,7 +141,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/home"
                 android:layout_width="96dp"
                 android:layout_height="74dp"
                 android:layout_gravity="center"
@@ -154,7 +153,7 @@
                 android:layout_toStartOf="@+id/imageView6"
                 android:layout_toLeftOf="@+id/imageView6"
 
-                android:src="@drawable/ic_baseline_search_24" />
+                android:src="@drawable/ic_baseline_home_24" />
 
             <ImageView
                 android:id="@+id/imageView6"
