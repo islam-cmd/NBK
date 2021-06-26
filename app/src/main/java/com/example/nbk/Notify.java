@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,7 +40,7 @@ public class Notify extends AppCompatActivity {
         String[] qrCode = i.getStringArrayExtra("qrArray");
 
         for(String s : qrCode){
-            System.out.println(s);
+            Log.d("qr123", s);
         }
 
         if(qrCode.length != 5){
@@ -64,13 +65,14 @@ public class Notify extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                if(qrCode[1]=="pay"){
+                Log.d("pay/recieve", qrCode[1]);
+                if(qrCode[1].equals("pay")){
                     be.UserOnePaysUser2(qrCode[3], UID, finalAmount);
-//                } else if(qrCode[1]=="recieve"){
-//                    be.UserOneRecievesFromUser2(qrCode[3], UID, finalAmount);
+                } else if(qrCode[1].equals("recieve")){
+                    be.UserOneRecievesFromUser2(qrCode[3], UID, finalAmount);
                 }
-                    be.UserOnePaysUser2(qrCode[3], UID, finalAmount);
-                    startActivity(new Intent(Notify.this, DashboardActivity.class));
+                //be.UserOneRecievesFromUser2(qrCode[3], UID, finalAmount);
+                startActivity(new Intent(Notify.this, DashboardActivity.class));
             }
         });
         reject.setOnClickListener(new View.OnClickListener() {

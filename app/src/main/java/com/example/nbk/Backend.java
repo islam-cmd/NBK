@@ -206,7 +206,7 @@ public class Backend {
         });
 
         DatabaseReference myRef2 = database.getReference("Customers/"+UID2+"/Balance");
-        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -245,7 +245,7 @@ public class Backend {
         });
 
         DatabaseReference myRef2 = database.getReference("Customers/"+UID2+"/Balance");
-        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

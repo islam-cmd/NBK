@@ -8,6 +8,8 @@
 
     <!--Button for rejecting a QR code-->
 
+    <!--Button for accepting a QR code-->
+
     <TextView
         android:id="@+id/notification"
         android:layout_width="151dp"
@@ -26,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/accept"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="91dp"
         android:layout_marginEnd="20dp"
         android:background="#E1002D"
 
@@ -36,14 +38,13 @@
         android:visibility="visible"
         tools:visibility="visible" />
 
-    <!--Button for accepting a QR code-->
     <Button
         android:id="@+id/accept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/notification"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="67dp"
         android:layout_marginEnd="20dp"
         android:background="#00E130"
 
