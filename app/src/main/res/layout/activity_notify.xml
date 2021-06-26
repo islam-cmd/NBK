@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Notify">
+
+    <!--Button for rejecting a QR code-->
+
+    <TextView
+        android:id="@+id/notification"
+        android:layout_width="151dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/bluenbk"
+        android:textColorHint="@color/bluenbk"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/reject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/accept"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
+        android:background="#E1002D"
+
+        android:hint="Confirm"
+        android:text="Reject"
+
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <!--Button for accepting a QR code-->
+    <Button
+        android:id="@+id/accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notification"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="#00E130"
+
+        android:hint="Confirm"
+        android:text="Confirm"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+</RelativeLayout>

@@ -53,7 +53,7 @@ public class QRScanner extends AppCompatActivity {
         result = findViewById(R.id.Result);
 
         previewView = findViewById(R.id.qr_activity);
-btn = findViewById(R.id.btn);
+        btn = findViewById(R.id.btn);
 //        qrCodeFoundButton = findViewById(R.id.activity_main_qrCodeFoundButton);
 //        qrCodeFoundButton.setVisibility(View.INVISIBLE);
 
@@ -132,10 +132,18 @@ btn = findViewById(R.id.btn);
             public void onQRCodeFound(String _qrCode) {
                 qrCode = _qrCode;
                 result.setText(_qrCode);
-                Intent intent = new Intent(QRScanner.this, PromotionsActivity.class);
-                intent.putExtra("category", qrCode);
-                startActivity(intent);
-                btn.setVisibility(View.VISIBLE);
+                String[] splitString = qrCode.split("-");
+                if(splitString[0].equals("nbk") && (splitString[1].equals("pay") || splitString[1].equals("recieve"))){
+                    Intent intent = new Intent(QRScanner.this, PromotionsActivity.class);
+                    intent.putExtra("qrArray", splitString);
+                    startActivity(intent);
+                    btn.setVisibility(View.VISIBLE);
+                } else {
+                    Intent intent = new Intent(QRScanner.this, PromotionsActivity.class);
+                    intent.putExtra("category", qrCode);
+                    startActivity(intent);
+                    btn.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

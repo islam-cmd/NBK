@@ -20,7 +20,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/border"
         android:gravity="center"
-        android:hint="Promotion"
+        android:hint="Scanner"
         android:textAlignment="center"
         android:textColor="@color/bluenbk"
         android:textColorHint="@color/bluenbk"

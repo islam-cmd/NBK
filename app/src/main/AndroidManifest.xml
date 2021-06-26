@@ -9,21 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NBK">
-        <activity android:name=".Pay"></activity>
-        <activity android:name=".Recieve">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".QRScanner"></activity>
+        <activity android:name=".Notify"></activity>
+        <activity android:name=".Pay" />
+        <activity android:name=".Recieve"></activity>
+        <activity android:name=".QRScanner" />
         <activity android:name=".PromotionsActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".DigitalCard" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -28,6 +28,8 @@ public class DashboardActivity extends AppCompatActivity {
     FrameLayout promoLayout;
 
     FrameLayout payLayout;
+    FrameLayout recieveLayout;
+    FrameLayout scannerLayout;
 
 
     @Override
@@ -38,6 +40,8 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         promoLayout = findViewById(R.id.promo);
         payLayout = findViewById(R.id.pay);
+        recieveLayout = findViewById(R.id.recieve);
+        scannerLayout = findViewById(R.id.scanner);
         username =findViewById(R.id.username);
         user =findViewById(R.id.user);
         accnum =findViewById(R.id.accnum);
@@ -101,6 +105,18 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, Pay.class));
+            }
+        });
+        recieveLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, Recieve.class));
+            }
+        });
+        scannerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, QRScanner.class));
             }
         });
 

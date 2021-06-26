@@ -48,7 +48,6 @@ FrameLayout filter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Backend be = new Backend();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    String keyword = "Travel";
     FrameLayout scanprom;
 
 //    ArrayList<Promotion> promos = new ArrayList<Promotion>();
@@ -93,6 +92,9 @@ FrameLayout filter;
             mRecyclerView.setLayoutManager(mLayoutManager);
 
             backend.collectPromotions(UID, mRecyclerView);
+            if(uri != ""){
+                backend.filterPromotions(UID, uri, mRecyclerView);
+            }
 //            getItemList();
 
 //            backend.filterPromotions(UID,"Travel",  mRecyclerView);
@@ -107,48 +109,7 @@ FrameLayout filter;
             Log.e("TAG", ex.getMessage());
         }
     }
-
-
-
-            private ArrayList<Promotion> getItemList() {
-
-                ArrayList<Promotion> promos = new ArrayList<Promotion>();
-                DatabaseReference myRef = database.getReference("Customers/" + UID + "/Promotions");
-                myRef.orderByKey().addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                        Promotion p = new Promotion(dataSnapshot.getKey(),
-                                dataSnapshot.child("Percent").getValue().toString(),
-                                dataSnapshot.child("Category").getValue().toString());
-                        promos.add(p);
-                        Log.d("Promo", p.toString());
-                        mAdapter = new ItemAdapter(promos);
-                        mRecyclerView.setAdapter(mAdapter);
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-
-                });
-return null;
-            }}
+}
 
 
 

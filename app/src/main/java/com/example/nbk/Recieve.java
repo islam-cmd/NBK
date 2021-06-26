@@ -39,6 +39,7 @@ public class Recieve extends AppCompatActivity {
         setContentView(R.layout.activity_recieve);
 
 //        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //FIX LATER
         String UID = "sflF8HgFLkQDXGe4PaZBmcYKi663";
         DatabaseReference myRef = database.getReference("Customers/"+UID);
         Log.d("WTH", FirebaseAuth.getInstance().getUid());
