@@ -134,7 +134,7 @@ public class QRScanner extends AppCompatActivity {
                 result.setText(_qrCode);
                 String[] splitString = qrCode.split("-");
                 if(splitString[0].equals("nbk") && (splitString[1].equals("pay") || splitString[1].equals("recieve"))){
-                    Intent intent = new Intent(QRScanner.this, PromotionsActivity.class);
+                    Intent intent = new Intent(QRScanner.this, Notify.class);
                     intent.putExtra("qrArray", splitString);
                     startActivity(intent);
                     btn.setVisibility(View.VISIBLE);

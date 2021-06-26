@@ -38,6 +38,10 @@ public class Notify extends AppCompatActivity {
         Intent i = getIntent();
         String[] qrCode = i.getStringArrayExtra("qrArray");
 
+        for(String s : qrCode){
+            System.out.println(s);
+        }
+
         if(qrCode.length != 5){
             startActivity(new Intent(Notify.this, DashboardActivity.class));
         }
@@ -62,10 +66,11 @@ public class Notify extends AppCompatActivity {
             public void onClick(View v) {
                 if(qrCode[1]=="pay"){
                     be.UserOnePaysUser2(qrCode[3], UID, finalAmount);
-                } else if(qrCode[1]=="recieve"){
-                    be.UserOneRecievesFromUser2(qrCode[3], UID, finalAmount);
+//                } else if(qrCode[1]=="recieve"){
+//                    be.UserOneRecievesFromUser2(qrCode[3], UID, finalAmount);
                 }
-                startActivity(new Intent(Notify.this, DashboardActivity.class));
+                    be.UserOnePaysUser2(qrCode[3], UID, finalAmount);
+                    startActivity(new Intent(Notify.this, DashboardActivity.class));
             }
         });
         reject.setOnClickListener(new View.OnClickListener() {
